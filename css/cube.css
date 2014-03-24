@@ -1,0 +1,61 @@
+        /*************** ANIMATIONS ***************/
+        @-webkit-keyframes spin-vertical {
+            0% { -webkit-transform: rotateX(120deg); }
+            100% { -webkit-transform: rotateX(180deg); }
+        }
+        /*************** STANDARD CUBE ***************/
+        .cube-wrap {
+            width:7.75%;
+            position:absolute;
+            bottom:50%;
+            z-index: 1;
+        }
+        .col-1{left:26.5%;-webkit-perspective-origin: 130% 50%;}
+        .col-2{left:36.3%;-webkit-perspective-origin: 90% 50%;}
+        .col-3{left:46.11%;-webkit-perspective-origin: 50% 50%;}
+        .col-4{left:55.9%;-webkit-perspective-origin: 10% 50%;}
+        .col-5{left:65.8%;-webkit-perspective-origin: -30% 50%;}
+        .cube {
+          -webkit-animation-play-state:paused;
+        }
+        .cube.running{
+          -webkit-animation-play-state:running;
+        }
+        .cube div {
+            position: absolute;
+            width: 100%;
+            background-color: #FFFFFF;
+            background-size: 100%;
+            box-shadow: inset 0 0 15px rgba(125,125,125,0.75);
+            text-align: center;
+        }
+        .first-pane{
+              background: url(../img/ICONS-chrome.png) center center no-repeat;
+        }
+        .second-pane{
+              background: url(../img/ICONS-firefox.png) center center no-repeat;
+        }
+        .third-pane{
+              background: url(../img/ICONS-safari.png) center center no-repeat;
+        }
+        .fourth-pane{
+              background: url(../img/ICONS-explorer.png) center center no-repeat;
+        }
+        .fifth-pane{
+              background: url(../img/ICONS-bitcoin.png) center center no-repeat;
+        }
+        .hashtag{
+              background: url(../img/ICONS-hashtag.png) center center no-repeat;
+        }
+        .f{
+              background: url(../img/ICONS-F.png) center center no-repeat;
+        }
+        .a{
+              background: url(../img/ICONS-A.png) center center no-repeat;
+        }
+        .i{
+              background: url(../img/ICONS-I.png) center center no-repeat;
+        }
+        .l{
+              background: url(../img/ICONS-L.png) center center no-repeat;
+        }

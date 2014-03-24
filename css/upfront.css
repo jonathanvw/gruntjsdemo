@@ -1,0 +1,7 @@
+body > div.reveal:after {
+  content: 'irc: #upfrontwichita';
+  font-style: normal;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}

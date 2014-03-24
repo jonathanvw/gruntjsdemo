@@ -1,60 +1,362 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Gruntjsdemo by jonathanvw</title>
+    <title>grunt.js</title>
+    <meta name="description" content="Grunt Talk and Demonstration">
+    <meta name="author" content="Jonathan Van Winkle">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="css/reveal.css">
+    <!-- THEMES: default, sky, beige, simple, serif, night, moon, solarized -->
+    <link rel="stylesheet" href="lib/reveal.js/css/theme/sky.css" id="theme">
+    <link rel="stylesheet" href="lib/reveal.js/lib/css/zenburn.css"><!-- For syntax highlighting -->
+    <link rel="stylesheet" href="css/upfront.css">
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+      document.write( '<link rel="stylesheet" href="lib/reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
+    <style>
+    .table {
+  margin:0px;padding:0px;
+  width:100%;
+  box-shadow: 10px 10px 5px #888888;
+  border:1px solid #727272;
+  
+  -moz-border-radius-bottomleft:5px;
+  -webkit-border-bottom-left-radius:5px;
+  border-bottom-left-radius:5px;
+  
+  -moz-border-radius-bottomright:5px;
+  -webkit-border-bottom-right-radius:5px;
+  border-bottom-right-radius:5px;
+  
+  -moz-border-radius-topright:5px;
+  -webkit-border-top-right-radius:5px;
+  border-top-right-radius:5px;
+  
+  -moz-border-radius-topleft:5px;
+  -webkit-border-top-left-radius:5px;
+  border-top-left-radius:5px;
+}.table table{
+    border-collapse: collapse;
+        border-spacing: 0;
+  width:100%;
+  height:100%;
+  margin:0px;padding:0px;
+}.table tr:last-child td:last-child {
+  -moz-border-radius-bottomright:5px;
+  -webkit-border-bottom-right-radius:5px;
+  border-bottom-right-radius:5px;
+}
+.table table tr:first-child td:first-child {
+  -moz-border-radius-topleft:5px;
+  -webkit-border-top-left-radius:5px;
+  border-top-left-radius:5px;
+}
+.table table tr:first-child td:last-child {
+  -moz-border-radius-topright:5px;
+  -webkit-border-top-right-radius:5px;
+  border-top-right-radius:5px;
+}.table tr:last-child td:first-child{
+  -moz-border-radius-bottomleft:5px;
+  -webkit-border-bottom-left-radius:5px;
+  border-bottom-left-radius:5px;
+}.table tr:hover td{
+  
+}
+.table tr:nth-child(odd){ background-color:#efefef; }
+.table tr:nth-child(even)    { background-color:#ffffff; }.table td{
+  vertical-align:middle;
+  border:1px solid #727272;
+  border-width:0px 1px 1px 0px;
+  text-align:left;
+  padding:10px;
+  font-weight:normal;
+  color:#000000;
+}.table tr:last-child td{
+  border-width:0px 1px 0px 0px;
+}.table tr td:last-child{
+  border-width:0px 0px 1px 0px;
+}.table tr:last-child td:last-child{
+  border-width:0px 0px 0px 0px;
+}
+.table tr:first-child td{
+    background:-o-linear-gradient(bottom, #2b2b2b 5%, #636363 100%);  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #2b2b2b), color-stop(1, #636363) );
+  background:-moz-linear-gradient( center top, #2b2b2b 5%, #636363 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#2b2b2b", endColorstr="#636363");  background: -o-linear-gradient(top,#2b2b2b,636363);
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  background-color:#2b2b2b;
+  border:0px solid #727272;
+  text-align:center;
+  border-width:0px 0px 1px 1px;
+  font-weight:bold;
+  color:#ffffff;
+}
+.table tr:first-child:hover td{
+  background:-o-linear-gradient(bottom, #2b2b2b 5%, #636363 100%);  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #2b2b2b), color-stop(1, #636363) );
+  background:-moz-linear-gradient( center top, #2b2b2b 5%, #636363 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#2b2b2b", endColorstr="#636363");  background: -o-linear-gradient(top,#2b2b2b,636363);
+
+  background-color:#2b2b2b;
+}
+.table tr:first-child td:first-child{
+  border-width:0px 0px 1px 0px;
+}
+.table tr:first-child td:last-child{
+  border-width:0px 0px 1px 1px;
+}
+</style>
     <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+      <script src="lib/js/html5shiv.js"></script>
     <![endif]-->
   </head>
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>Gruntjsdemo</h1>
-        <p>Demonstration of the automation power of grunt.js</p>
+    <div class="reveal">
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section>
+        <h1>grunt.js</h1>
+        <h2>A javascript task-runner</h2>
+        <p><img src="/img/upfront-logo.svg" alt="UpFront Wichita" title="" /></p>
+        <p>Jonathan Van Winkle </p>
+        </section>
 
-        <p class="view"><a href="https://github.com/jonathanvw/gruntjsdemo">View the Project on GitHub <small>jonathanvw/gruntjsdemo</small></a></p>
+        <section data-background="/img/grunt.png">
+        </section>
 
-
+        <section data-transition="fade">
+        <h1>GRUNT</h1>
         <ul>
-          <li><a href="https://github.com/jonathanvw/gruntjsdemo/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/jonathanvw/gruntjsdemo/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/jonathanvw/gruntjsdemo">View On <strong>GitHub</strong></a></li>
+          <li>grunt is a task-based command line<br/> build tool for javascript projects
+          <ul class="fragment"><li>aka: <em>Automation Magic</em></li></ul></li>
+          <li class="fragment">Similar to Codekit or Hammer</li>
+          <li class="fragment">...ant, rake, or guard</li>
+          <li class="fragment">Written in javascript on Node.js</li>
+          <li class="fragment"><strong>Bottom Line: it runs TASKS</strong></li>
         </ul>
-      </header>
-      <section>
-        <h1>
-<a name="gruntjsdemo" class="anchor" href="#gruntjsdemo"><span class="octicon octicon-link"></span></a>gruntjsdemo</h1>
+        </section>
 
-<p>Demonstration of the automation power of grunt.js</p>
+        <section>
+          <section>
+          <h1>Tasks</h1>
+          <h2>do the grunt work</h2>
+          <ul>
+          <p>Tasks that I do regularly that grunt do for me:</p>
+          <ul><li class="fragment">JS/CSS Minification</li>
+              <li class="fragment">File concatenation</li>
+              <li class="fragment">Parsing languages like:<br/>SASS, LESS, CoffeeScript, etc</li>
+              <li class="fragment">JSLinting</li>
+              <li class="fragment">Sprite image generation</li>
+              <li class="fragment">Image optimization</li>
+          </ul>
+          </section>
 
-<h2>
-<a name="this-is-the-demo-files-from-my-gruntjs-demonstration-for-devict" class="anchor" href="#this-is-the-demo-files-from-my-gruntjs-demonstration-for-devict"><span class="octicon octicon-link"></span></a>This is the demo files from my grunt.js demonstration for devICT</h2>
+          <section>
+          <h1>Tasks</h1>
+          <h4>All of these plugins and more are available at:</h4>
+          <p><a href="https://github.com/gruntjs" target="_blank">https://gruntjs.com/plugins</a></p>
+          <p>Currently there are 2,215 plugins available.</p>
+          <p><strong>Note:</strong> "<em>Official</em>" plugins begin with <em>grunt-contrib-</em></p>
+          </section>
+        </section>
 
-<p>This repo demonstrates the autmotion power of grunt.js for typical front end demonstrations and it utilizes the following grunt plugins:</p>
+        <section>
+          <section>
+          <h1>SETUP: Node.js</h1>
+          <h3>node.js Prerequisites</h3>
+          <ul>
+            <li><strong>GCC 4.2</strong> or newer</li>
+            <li>GNU <strong>make</strong> 3.81 or newer.<br/><em>Pre-installed on most systems. Sometimes called gmake.</em></li>
+            <li><strong>python 2.6 or 2.7</strong>.<br/><em>The build tools distributed with Node run on python.</em></li>
+          </ul>
+          </section>
 
-<ul>
-<li>grunt-imagine</li>
-<li>grunt-concat-css</li>
-<li>grunt-contrib-cssmin</li>
-<li>grunt-contrib-copy</li>
-<li>grunt-spritesmith</li>
-<li>grunt-contrib-jshint</li>
-<li>grunt-contrib-uglify</li>
-<li>grunt-contrib-watch</li>
-</ul><p>This demo also showcases some css3 3d transformations and css3 animation techniques.</p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/jonathanvw">jonathanvw</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
+          <section>
+          <h1>SETUP: Node.js</h1>
+          <h3>Install the dependencies</h3>
+          <pre><code>$ sudo apt-get install g++ curl libssl-dev apache2-utils
+$ sudo apt-get install git-core</code></pre>
+          </section>
+
+          <section>
+          <h1>SETUP: Node.js</h1>
+          <p>Go to the node.js website and click the install button: <a href="http://nodejs.org/" target="_blank">nodejs.org</a></p>
+          <div class="fragment">
+            <p>OR...<br/><br/></p>
+            <h3>Install Node Version Manager</h3>
+            <pre><code>$ curl https://raw.github.com/creationix/nvm/master/install.sh | sh</code></pre>
+          </div>
+          <div class="fragment">
+            <h3>Then activate nvm command</h3>
+            <pre><code>$ source ~/.nvm/nvm.sh</code></pre>
+          </div>
+          </section>
+
+          <section>
+          <h1>SETUP: Node.js</h1>
+          <h3>Install the dependencies</h3>
+          <pre><code>$ nvm install 0.10
+##################################################### 100.0%
+Now using node v0.10.24
+$ node -v
+v0.10.24</code></pre>
+          </section>
+        </section>
+
+        <section>
+          <section>
+          <h1>SETUP: Grunt</h1>
+          <h3>Grunt CLI<br/>(Command Line Interface)</h3>
+          <pre><code>$ npm install -g grunt-cli</code></pre>
+          </section>
+
+          <section>
+          <h1>SETUP: Grunt</h1>
+          <h3>package.json</h3>
+          <pre><code>{
+"name": "my-project-name",
+  "version": "0.1.0",
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-jshint": "~0.6.3",
+    "grunt-contrib-nodeunit": "~0.2.0",
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-contrib-watch": "~0.5.3"
+  }
+}</code></pre>
+          </section>
+
+          <section>
+          <h1>SETUP: Grunt</h1>
+          <h3>Gruntfile.js or Gruntfile.coffee</h3>
+          <p>Contains the following:</p>
+          <ul>
+            <li>Wrapper Function</li>
+            <li>Project and task configuration</li>
+            <li>Loading Grunt Plugins and Tasks</li>
+            <li>Custom Tasks</li>
+          </ul>
+          </section>
+
+          <section>
+          <h1>SETUP: Grunt</h1>
+          <h3>Gruntfile.js or Gruntfile.coffee</h3>
+          <pre><code>module.exports = function(grunt) {
+  // Project configuration.
+  grunt.initConfig({                           
+    pkg: grunt.file.readJSON('package.json'),
+    uglify: {
+      build: {
+        src: 'src/&lt;%= pkg.name %&gt;.js',
+        dest: 'build/&lt;%= pkg.name %&gt;.min.js'
+      }
+    }
+  });
+  // Load the plugins
+  grunt.loadNpmTasks('grunt-contrib-uglify');    
+  // Default task(s).
+  grunt.registerTask('default', ['uglify']);     
+};</code></pre>
+          </section>
+        </section>
+
+        <section>
+          <h1>Installing Plugins</h1>
+          <pre><code>npm install grunt-imagine --save-dev</code></pre>
+          <p>This will install the imagine plugin. Adding "--save-dev" will add the plugin to the package.json file.</p>
+          <div class="fragment">
+            <pre><code>grunt.loadNpmTasks('grunt-imagemine');</code></pre>
+            <p>Add this to gruntfile.js to enable the plugin</p>
+          </div>
+        </section>
+        
+        <section>
+          <h1>Installing Plugins cont'd</h1>
+          <p>The actual configuration within gruntfile.js for imagine</p>
+          <div class="fragment">
+            <pre><code>pngmin: {
+  src: [
+    'components/img/*.png',
+  ],
+  dest: 'temp/'
+},
+gifmin: {
+  src: ['components/img/*.gif'],
+  dest: 'temp/'
+},
+jpgmin: {
+  src: ['components/img/*.jpg'],
+  dest: 'temp/',
+  quality: 72 
+},</code></pre>
+          </div>
+        </section>
+
+
+          <section>
+          <h1>The results:</h1>
+          <p>I packaged these tasks into one master imgmin task and entered "grunt imgmin"</p>
+          <pre><code>Running "grunt imgmin" task
+>> Compressed 33 files
+>> Uncompressed size: 19039.49kb, Compressed size: 18433.62kb, Savings: 3.18%
+
+Running "jpgmin" task
+>> Compressed 1 files
+>> Uncompressed size: 754.99kb, Compressed size: 130.3kb, Savings: 82.74%
+
+Running "gifmin" task
+>> Compressed 1 files
+>> Uncompressed size: 58.66kb, Compressed size: 58.66kb, Savings: 0%
+
+Running "copy:main" (copy) task
+Copied 34 files</code></pre>
+          </section>
+
+          <section>
+          <h1>DEMO</h1>
+          <h3>Other perks</h3>
+          <ul>
+            <li class="fragment">LiveReload</li>
+            <li class="fragment">JSLinting</li>
+            <li class="fragment">Image Sprites</li>
+            <li class="fragment">SASS/LESS compiling</li>
+            <li class="fragment">Clean up log statements for production</li>
+            <li class="fragment">Unit Testing</li>
+            <li class="fragment">You can write your own plugin!</li>
+          </ul>
+          </section>
+        </section>
+
+        <section>
+        <h1>DEMO</h1>
+        <p>Grunt saves you time so you can spend it on other higher level pursuits like slot machines or bitcoin mining</p>
+        </section>
+
+      </div>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
+    <script src="lib/reveal.js/lib/js/head.min.js"></script>
+    <script src="lib/reveal.js/js/reveal.min.js"></script>
+    <script>
+      // Full list of configuration options available here:  https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'lib/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'lib/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+    </script>
   </body>
 </html>
